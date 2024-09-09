@@ -112,6 +112,17 @@ class LivewireFlashNotifier
     }
 
     /**
+     * Set an auto-dismiss interval on a message
+     *
+     * @param int|bool $seconds
+     *
+     * @return $this
+     */
+    public function dismissAfter($seconds = false)
+    {
+        return $this->updateLastMessage(['dismissAfter' => $seconds]);
+    }
+    /**
      * Convenience method to set dismissable = false on a message
      *
      * @return void
