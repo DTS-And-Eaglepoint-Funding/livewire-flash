@@ -186,4 +186,19 @@ class LivewireFlashNotifier
             return $this->message(null, $method);
         }
     }
+
+    /**
+     * Magic __callStatic: pass the method name called as the message type if it is configured
+     *
+     * @param mixed $method
+     * @param mixed $arguments
+     * @return \MattLibera\LivewireFlash\LivewireFlashNotifier
+     */
+    public static function __callStatic($method, $arguments)
+    {
+        $messageTypes = config('livewire-flash.styles');
+        if (isset($messageTypes[$method])) {
+            return static::message(null, $method);
+        }
+    }
 }
